@@ -91,7 +91,7 @@ public class LineairSearch {
 
 
     /**
-     * Weve gotta test u know
+     * Weve gotta test u know Jules
      */
     private void test(){
         int[] allZero = new int[ARRAY_LENGTH];
