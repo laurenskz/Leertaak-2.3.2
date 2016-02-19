@@ -87,6 +87,9 @@ public class LineairSearch {
     }
 
 
+    /**
+     * Weve gotta test u know
+     */
     private void test(){
         int[] allZero = new int[ARRAY_LENGTH];
         for (int i = 0 ; i < 1 ; i++) {
