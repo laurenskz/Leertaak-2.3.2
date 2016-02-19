@@ -12,6 +12,9 @@ public class LineairSearch {
     public static final int ARRAY_LENGTH = Integer.MAX_VALUE/30;
     private Random random = new Random();
 
+    /**
+     * Vind het getal in array a op een lineaire manier
+     */
     class ZitErInA implements SearchFunction {
         public  boolean search(int getal, int[] a){
             boolean found = false;
