@@ -70,4 +70,8 @@ public class Controller implements ActionListener {
 
 		}
 	}
+
+	public DecisionTree getTree() {
+		return tree;
+	}
 }

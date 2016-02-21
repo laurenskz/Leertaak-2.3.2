@@ -16,7 +16,7 @@ public class TestFileReader  extends TestCase {
 
     private static Map<Item,String> items;
     private static Map<String, FeatureType> features;
-    public static final FeatureType YES_NO_FEATURE_TYPE = new FeatureType("YesNo", new String[]{"Yes", "No"});
+    public static final FeatureType YES_NO_FEATURE_TYPE = new FeatureType("YesNo", new String[]{"yes", "no"});
     private static int numberOfFeatures;
     private static int numberOfItems;
 
@@ -33,6 +33,13 @@ public class TestFileReader  extends TestCase {
             String assigned = tree.assignCategory(item);
             assertTrue(category.equals(assigned));
         }
+    }
+
+    public static DecisionTree get(){
+        String[] contents = readFile("testData.txt", Charset.defaultCharset());
+        parseLines(contents);
+        DecisionTree tree = new DecisionTree(DecisionTree.buildDecisionTree(items, features));
+        return tree;
     }
 
     private static void parseLines(String[] contents) {
@@ -63,7 +70,7 @@ public class TestFileReader  extends TestCase {
     private static Item parseItem(String[] words){
         Feature[] features = new Feature[words.length-2];
         for (int i = 1; i < words.length-1; i++) {
-            features[i-1] = new Feature("Feature"+i,words[i].equals("1")?"Yes":"No",YES_NO_FEATURE_TYPE);
+            features[i-1] = new Feature("Feature"+i,words[i].equals("1")?"yes":"no",YES_NO_FEATURE_TYPE);
             if(TestFileReader.features.size()<i){
                 TestFileReader.features.put("Feature"+i,YES_NO_FEATURE_TYPE);
             }
