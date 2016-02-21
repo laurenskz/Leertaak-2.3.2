@@ -1,8 +1,6 @@
 package opgave3;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by Laurens on 16-2-2016.
