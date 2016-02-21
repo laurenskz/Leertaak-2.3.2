@@ -4,7 +4,7 @@ import java.util.Map;
 
 import junit.framework.TestCase;
 
-import classifier.*;
+import opgave4.classifier.*;
 
 public class TestTraining extends TestCase {
 

@@ -1,6 +1,6 @@
 package opgave4.test;
 import junit.framework.TestCase;
-import classifier.*;
+import opgave4.classifier.*;
 
 
 public class TestTree extends TestCase {

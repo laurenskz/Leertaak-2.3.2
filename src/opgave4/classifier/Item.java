@@ -25,53 +25,57 @@ import java.util.Map;
  * Represents an item that can be classified.
  */
 public class Item {
-  private Map features = new HashMap();
-  private String name;
-  private Feature category;
-  /**
-   * constructor of item
-   * @param name the name of the item
-   * @param features the attributes of the item, by convention the
-   *                        firts element of the array represents the
-   *                        category of the item
-   */
-  public Item(String name, Feature[] features){
-    this.name = name;
-    for (int i = 0; i < features.length; i++) {
-		this.features.put(features[i].name(),
-						   features[i]);
-	}
-  }
+    private Map features = new HashMap();
+    private String name;
+    private Feature category;
 
-  public String name() { return name; }
+    /**
+     * constructor of item
+     *
+     * @param name     the name of the item
+     * @param features the attributes of the item, by convention the
+     *                 firts element of the array represents the
+     *                 category of the item
+     */
+    public Item(String name, Feature[] features) {
+        this.name = name;
+        for (int i = 0; i < features.length; i++) {
+            this.features.put(features[i].name(),
+                    features[i]);
+        }
+    }
 
-  public String value(String featureName){
-  	Feature feature = (Feature) features.get(featureName);
-  	if(feature!=null){
-  		return feature.value();
-  	}else{
-  		return null;
-  	}
-  }
+    public String name() {
+        return name;
+    }
 
-  public void setValue(String featureName, String newValue) {
-	Feature feature = (Feature) features.get(featureName);
-	if(feature!=null){
-		feature.value(newValue);
-	}
-  }  
-  
-  public String toString(){
-    StringBuffer buffer=new StringBuffer();
-    buffer.append("Item: ")
-          .append(name)
-          .append(". ");
-    int i;
-    //for(i=0; i<attributes.length; ++i){
-    //  if(i>0) buffer.append(", ");
-    //  buffer.append(attributes[i].toString());
-    //}
-    return buffer.toString();
-  }
+    public String value(String featureName) {
+        Feature feature = (Feature) features.get(featureName);
+        if (feature != null) {
+            return feature.value();
+        } else {
+            return null;
+        }
+    }
+
+    public void setValue(String featureName, String newValue) {
+        Feature feature = (Feature) features.get(featureName);
+        if (feature != null) {
+            feature.value(newValue);
+        }
+    }
+
+    public String toString() {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("")
+                .append(name)
+                .append("");
+        int i;
+        //for(i=0; i<attributes.length; ++i){
+        //  if(i>0) buffer.append(", ");
+        //  buffer.append(attributes[i].toString());
+        //}
+        return buffer.toString();
+    }
 
 }

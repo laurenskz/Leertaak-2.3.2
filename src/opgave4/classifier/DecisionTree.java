@@ -18,10 +18,7 @@
  */
 package opgave4.classifier;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Represents a decision tree.
@@ -71,7 +68,7 @@ public class DecisionTree
 
     //Input: a training set of items T, a set of attributes A
     //Output: a decision tree (the root of it)
-    private static Node buildDecisionTree(Map items, Map features) {
+    public static Node buildDecisionTree(Map items, Map features) {
         //0) if the attribute set is empty or the items belong to a single class
         if (features.size() == 0 || information(items) == 0.0) {
             //  a) create a leaf node labeled according to the class of the items
@@ -179,18 +176,24 @@ public class DecisionTree
      * a set of items according to a given split attribute.
      */
     private static double evaluateSplitGain(Map items, String split, Collection possibleValues) {
+//        System.out.println("Split gain");
         double origInfo = information(items);
+//        System.out.println(origInfo);
         double splitInfo = 0;
         Map partitions = performSplit(items, split, possibleValues);
+//        System.out.println(partitions);
         int i;
         double size = items.size();
         for (Iterator iter = possibleValues.iterator(); iter.hasNext(); ) {
             String value = (String) iter.next();
+//            System.out.println(value);
             Map partition = (Map) partitions.get(value);
             double partitionSize = partition.size();
             double partitionInfo = information(partition);
+//            System.out.println(partitionInfo);
             splitInfo += partitionSize / size * partitionInfo;
         }
+//        System.out.println(splitInfo);
         return origInfo - splitInfo;
     }
 
@@ -199,6 +202,7 @@ public class DecisionTree
      * The classes represent the symbols of the alphabet
      */
     private static double information(Map items) {
+//        System.out.print("-(");
         Map frequencies = new HashMap();
 
         // compute number of occurrencies of classes
@@ -221,14 +225,54 @@ public class DecisionTree
         while (it.hasNext()) {
             Long num_occurr = (Long) it.next();
             double freq = num_occurr.doubleValue() / numItems;
+//            System.out.print(freq+"*log2("+freq+")"+(it.hasNext()?"+":""));
             info += freq * Math.log(freq) / Math.log(2.0);
         }
+//        System.out.print(")=" + -info+"\n");
         return -info;
     }
 
     public static void main(String[] args) {
+        String answer = "-(0.6666666666666666*log2(0.6666666666666666)+0.3333333333333333*log2(0.3333333333333333))=0.9182958340544896";
+        answer = answer.replaceAll("0.6666666666666666","(2/3)");
+        answer = answer.replaceAll("0.3333333333333333","(1/3)");
+//        System.out.println(answer);
         Map<Item, String> items = new HashMap<>();
-        Item car = new Item()
+        Map<String,FeatureType> features = new HashMap<>();
+        String[] yesNo= new String[]{"Ja","Nee"};
+        FeatureType abs = new FeatureType("ABS",yesNo);
+        FeatureType airco = new FeatureType("AC",yesNo);
+        Feature noAirco = new Feature("AC","Nee",airco);
+        Feature yesAirco = new Feature("AC","Ja",airco);
+        Feature noAbs = new Feature("ABS","Nee",abs);
+        Feature yesAbs = new Feature("ABS","Ja",abs);
+        Item bmw = new Item("Mercedes",new Feature[]{yesAbs,yesAirco});
+        Item smart = new Item("Porsche",new Feature[]{yesAbs,noAirco});
+        Item bab = new Item("Renault",new Feature[]{noAirco,yesAbs});
+        Item hlaas = new Item("Saab",new Feature[]{noAirco,noAbs});
+        features.put("AC",airco);
+        features.put("ABS",abs);
+        items.put(bmw,"Hoog");
+        items.put(smart,"Hoog");
+        items.put(bab, "Midden");
+        items.put(hlaas, "Laag");
+        System.out.println(buildDecisionTree(items,features));
+//        System.out.println(evaluateSplitGain(items,"ABS",airco.allowedValues()));
+//        Map letsContinue = (Map) performSplit(items,"ABS",abs.allowedValues()).get("Ja");
+//        System.out.println(letsContinue);
+//        System.out.println(information(letsContinue));
+//        System.out.println(performSplit(letsContinue,"AC",airco.allowedValues()));
+        //System.out.println(information(items));
+//        information((Map) performSplit(items, "AC", abs.allowedValues()).get("Nee"));
+//        information(items);
+//        System.out.println(items);
+//        Map splitted = performSplit(items, "Abs", airco.allowedValues());
+//        System.out.println(splitted);
+//        System.out.println(information(items));
+//        System.out.println(information((Map)splitted.get("yes")));
+//        System.out.println(information((Map) splitted.get("no")));
+//        System.out.println(evaluateSplitGain(items, "Abs", abs.allowedValues()));
+//        System.out.println(selectSplit(items,features));
     }
 
 }
