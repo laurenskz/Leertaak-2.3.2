@@ -8,24 +8,24 @@ import java.awt.event.ActionListener;
  */
 public class ButtonPanel extends JPanel{
 	public static final String NEXT_TXT = "Next";
-	public static final String LAST_TXT = "Previous";
+	public static final String RESET_TXT = "Reset";
 
 	JButton next;
-	JButton last;
+	JButton reset;
 
 	public ButtonPanel(ActionListener listener) {
 		super();
 
-		last = new JButton(LAST_TXT);
-		last.addActionListener(listener);
-		add(last);
+		reset = new JButton(RESET_TXT);
+		reset.addActionListener(listener);
+		add(reset);
 
 		next = new JButton(NEXT_TXT);
 		next.addActionListener(listener);
 		add(next);
 	}
 
-	public void lastVisible(boolean b) {
-		last.setVisible(b);
+	public void resetVisible(boolean b) {
+		reset.setVisible(b);
 	}
 }

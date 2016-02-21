@@ -21,6 +21,7 @@ package opgave4.classifier;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * A node of a decision tree
@@ -48,6 +49,8 @@ public class Node {
   }
   
   public String toString(){ return toString(""); }
+
+  public Set getArcs() { return arcs.keySet(); }
   
   private static final String indentStep="    ";
   

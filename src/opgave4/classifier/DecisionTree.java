@@ -234,7 +234,8 @@ public class DecisionTree
         Map<Item, String> items = new HashMap<>();
 
 		DecisionTree tree = DecisionTree.buildTree();
-    }
+		System.out.println(tree.toString());
+	}
 
 	public static DecisionTree buildTree(){
 		Node root = new Node("AC");
