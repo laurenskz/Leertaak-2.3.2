@@ -35,6 +35,10 @@ public class DecisionTree
         root = tree;
     }
 
+	public Node getRoot() {
+		return root;
+	}
+
     /**
      * Assign a category to an item.
      * The algorithm takes as input an item and a decision tree.
@@ -228,7 +232,31 @@ public class DecisionTree
 
     public static void main(String[] args) {
         Map<Item, String> items = new HashMap<>();
-        Item car = new Item()
+
+		DecisionTree tree = DecisionTree.buildTree();
     }
+
+	public static DecisionTree buildTree(){
+		Node root = new Node("AC");
+
+		Node n1=new Node("ABS");
+		Node n2=new Node("ABS");
+		root.addChild("yes",n1);
+		root.addChild("no",n2);
+
+		// leaves
+		Node l1 = new Node("high");
+		Node l2 = new Node("medium");
+		Node l3 = new Node("medium");
+		Node l4 = new Node("low");
+
+		n1.addChild("yes",l1);
+		n1.addChild("no",l2);
+
+		n2.addChild("yes",l3);
+		n2.addChild("no",l4);
+
+		return new DecisionTree(root);
+	}
 
 }

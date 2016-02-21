@@ -1,7 +1,7 @@
 package opgave4.test;
 import junit.framework.TestCase;
 
-import classifier.*;
+import opgave4.classifier.Node;
 
 public class TestRepresentation extends TestCase {
 

@@ -1,7 +1,7 @@
 package opgave4.test;
-import classifier.*;
-import junit.framework.TestCase;
 
+import junit.framework.TestCase;
+import opgave4.classifier.*;
 
 
 public class TestClassifier extends TestCase {
