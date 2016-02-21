@@ -15,6 +15,7 @@ public class AllTests {
         TestSuite suite = new TestSuite("Test for default package");
         //$JUnit-BEGIN$
         suite.addTest(new TestSuite(TestClassifier.class));
+        suite.addTest(new TestSuite(TestFileReader.class));
         suite.addTest(new TestSuite(TestItem.class));
         suite.addTest(new TestSuite(TestRepresentation.class));
         suite.addTest(new TestSuite(TestTree.class));

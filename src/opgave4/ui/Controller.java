@@ -134,4 +134,8 @@ public class Controller implements ActionListener {
 			arc = button.getText();
 		}
 	}
+
+	public DecisionTree getTree() {
+		return tree;
+	}
 }

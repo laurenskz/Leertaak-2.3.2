@@ -27,52 +27,60 @@ import java.util.Set;
  * A node of a decision tree
  */
 public class Node {
-  private String label;
+    private String label;
 
-  private Map arcs=new HashMap();
+    private Map arcs = new HashMap();
 
-  // leaf constructor
-  public Node(String label) {
-	this.label = label;
-  }
-
-  public void addChild(String arcLabel, Node child){
-  	arcs.put(arcLabel,child);  
-  }
-  
-  public boolean isLeaf() { return arcs.size()==0; }
-
-  public String label() { return label; }
-  
-  public Node follow(String arcLabel) {
-	return (Node)arcs.get(arcLabel);
-  }
-  
-  public String toString(){ return toString(""); }
-
-  public Set getArcs() { return arcs.keySet(); }
-  
-  private static final String indentStep="    ";
-  
-  private String toString(String indent){
-    StringBuffer buffer=new StringBuffer();
-    buffer.append("[")
-          .append(label);
-    if(!isLeaf()){
-      buffer.append("\n");
-      int i;
-      for (Iterator iter = arcs.keySet().iterator(); iter.hasNext();) {
-		String arcLabel = (String) iter.next();
-		Node dest = (Node)arcs.get(arcLabel);
-        buffer.append(indent)
-              .append("  (")
-              .append(arcLabel)
-              .append(")--> ")
-              .append(dest.toString(indent+indentStep));
-      }
-      buffer.append(indent);
+    // leaf constructor
+    public Node(String label) {
+        this.label = label;
     }
-    buffer.append("]\n");
-    return buffer.toString();
-  }
+
+    public void addChild(String arcLabel, Node child) {
+        arcs.put(arcLabel, child);
+    }
+
+    public boolean isLeaf() {
+        return arcs.size() == 0;
+    }
+
+    public String label() {
+        return label;
+    }
+
+    public Node follow(String arcLabel) {
+        return (Node) arcs.get(arcLabel);
+    }
+
+    public Map getArcs() {
+        return arcs;
+    }
+
+    public String toString() {
+        return toString("");
+    }
+
+    private static final String indentStep = "    ";
+
+    private String toString(String indent) {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("[")
+                .append(label);
+        if (!isLeaf()) {
+            buffer.append("\n");
+            int i;
+            for (Iterator iter = arcs.keySet().iterator(); iter.hasNext(); ) {
+                String arcLabel = (String) iter.next();
+                Node dest = (Node) arcs.get(arcLabel);
+                buffer.append(indent)
+                        .append("  (")
+                        .append(arcLabel)
+                        .append(")--> ")
+                        .append(dest.toString(indent + indentStep));
+            }
+            buffer.append(indent);
+        }
+        buffer.append("]\n");
+        return buffer.toString();
+    }
 }
