@@ -176,24 +176,18 @@ public class DecisionTree
      * a set of items according to a given split attribute.
      */
     private static double evaluateSplitGain(Map items, String split, Collection possibleValues) {
-//        System.out.println("Split gain");
         double origInfo = information(items);
-//        System.out.println(origInfo);
         double splitInfo = 0;
         Map partitions = performSplit(items, split, possibleValues);
-//        System.out.println(partitions);
         int i;
         double size = items.size();
         for (Iterator iter = possibleValues.iterator(); iter.hasNext(); ) {
             String value = (String) iter.next();
-//            System.out.println(value);
             Map partition = (Map) partitions.get(value);
             double partitionSize = partition.size();
             double partitionInfo = information(partition);
-//            System.out.println(partitionInfo);
             splitInfo += partitionSize / size * partitionInfo;
         }
-//        System.out.println(splitInfo);
         return origInfo - splitInfo;
     }
 
@@ -202,7 +196,6 @@ public class DecisionTree
      * The classes represent the symbols of the alphabet
      */
     private static double information(Map items) {
-//        System.out.print("-(");
         Map frequencies = new HashMap();
 
         // compute number of occurrencies of classes
@@ -225,10 +218,8 @@ public class DecisionTree
         while (it.hasNext()) {
             Long num_occurr = (Long) it.next();
             double freq = num_occurr.doubleValue() / numItems;
-//            System.out.print(freq+"*log2("+freq+")"+(it.hasNext()?"+":""));
             info += freq * Math.log(freq) / Math.log(2.0);
         }
-//        System.out.print(")=" + -info+"\n");
         return -info;
     }
 
