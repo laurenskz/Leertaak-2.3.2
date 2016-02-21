@@ -4,7 +4,7 @@ import opgave4.classifier.DecisionTree;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Set;
+import java.util.Map;
 
 /**
  * Created by Jules on 21/02/2016.
@@ -47,7 +47,7 @@ public class View extends JFrame {
 	 * @param options
 	 * @param isRoot
 	 */
-	public void setQuestion(String s, Set options, boolean isRoot) {
+	public void setQuestion(String s, Map options, boolean isRoot) {
 		questionPanel.setQuestion(s, options);
 		buttonPanel.resetVisible(!isRoot);
 	}

@@ -3,6 +3,7 @@ package opgave4.ui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -29,14 +30,14 @@ public class QuestionPanel extends JPanel {
 		validate();
 	}
 
-	public void setQuestion(String s, Set options) {
+	public void setQuestion(String s, Map options) {
 		question.setText(s);
 
 		for (JRadioButton button : buttons) {
 			remove(button);
 		}
 
-		Object[] obs = options.toArray();
+		Object[] obs = options.keySet().toArray();
 
 		if (obs[1] instanceof String) {
 			buttons = new JRadioButton[obs.length];
